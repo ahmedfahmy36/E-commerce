@@ -1,9 +1,7 @@
-// composables/useApi.ts
 import { computed, type Ref } from 'vue';
 import { useFetch, useRuntimeConfig } from 'nuxt/app';
 import type { FilterState } from './useProductFilter';
 
-// ===== Raw API Types =====
 
 interface Meta {
   code: number;

@@ -17,9 +17,7 @@
         </ol>
       </nav>
 
-      <h2 class="text-3xl font-bold text-gray-900 mb-4 lg:mb-8">
-        Electronics
-      </h2>
+      <h2 class="text-3xl font-bold text-gray-900 mb-4 lg:mb-8">Electronics</h2>
 
       <!-- Mobile / Tablet top bar: Filter + item count -->
       <div class="flex items-center justify-between mb-4 lg:hidden">
@@ -28,23 +26,22 @@
           @click="showMobileFilters = true"
         >
           <svg
-            class="w-4 h-4 mr-1.5"
+            class="w-4 h-4 mr-1"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 4a1 1 0 011-1h16a1 1 0 01.8 1.6l-5.2 6.933A2 2 0 0015 12.8V18l-4 2v-7.2a2 2 0 00-.6-1.267L5.2 5.6A1 1 0 015 4H4a1 1 0 01-1-1z"
-            />
+            <line x1="3" y1="6" x2="21" y2="6" stroke-width="2" />
+            <line x1="3" y1="12" x2="21" y2="12" stroke-width="2" />
+            <line x1="3" y1="18" x2="21" y2="18" stroke-width="2" />
+
+            <circle cx="8" cy="6" r="2.3" stroke-width="1.3" />
+            <circle cx="15" cy="12" r="2.3" stroke-width="1.3" />
+            <circle cx="9" cy="18" r="2.3" stroke-width="1.3" />
           </svg>
+
           Filter
-          <span
-            v-if="activeFilterCount > 0"
-            class="ml-1 text-blue-600"
-          >
+          <span v-if="activeFilterCount > 0" class="ml-1 text-blue-600">
             ({{ activeFilterCount }})
           </span>
         </button>
@@ -68,14 +65,18 @@
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <!-- horizontal lines -->
+              <line x1="3" y1="6" x2="21" y2="6" stroke-width="2" />
+              <line x1="3" y1="12" x2="21" y2="12" stroke-width="2" />
+              <line x1="3" y1="18" x2="21" y2="18" stroke-width="2" />
+
+              <!-- circles with thinner stroke + small offset -->
+              <circle cx="8" cy="6" r="2.3" stroke-width="1.3" />
+              <circle cx="15" cy="12" r="2.3" stroke-width="1.3" />
+              <circle cx="9" cy="18" r="2.3" stroke-width="1.3" />
             </svg>
-            {{ showFilters ? 'Hide Filters' : 'Show Filters' }}
+
+            {{ showFilters ? "Hide Filters" : "Show Filters" }}
           </button>
 
           <!-- Active filter tags -->
@@ -163,7 +164,7 @@
             class="text-center p-12 bg-red-50 border border-red-300 rounded-lg shadow-sm"
           >
             <p class="text-lg font-medium text-red-700">
-              Error loading products. Check API connection.
+              Error loading products.
             </p>
             <p class="text-sm text-red-600 mt-2">
               {{ String(error) }}
@@ -204,9 +205,11 @@
                   :key="page"
                   @click="goToPage(page)"
                   class="w-8 h-8 flex items-center justify-center rounded border text-sm"
-                  :class="page === pagination.current_page
-                    ? 'bg-gray-900 text-white border-gray-900'
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400 hover:text-gray-900'"
+                  :class="
+                    page === pagination.current_page
+                      ? 'bg-gray-900 text-white border-gray-900'
+                      : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400 hover:text-gray-900'
+                  "
                 >
                   {{ page }}
                 </button>
@@ -228,9 +231,7 @@
             v-else
             class="text-center p-12 bg-gray-100 border border-gray-300 rounded-lg shadow-sm"
           >
-            <p class="text-xl font-semibold text-gray-700">
-              No results found.
-            </p>
+            <p class="text-xl font-semibold text-gray-700">No results found.</p>
             <p class="text-gray-500 mt-2">
               Try clearing your filters or changing your search term.
             </p>
@@ -257,15 +258,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
-import { useHead } from 'nuxt/app';
-import { useProductFilter } from '../../composables/useProductFilter';
+import { ref, computed, watch } from "vue";
+import { useHead } from "nuxt/app";
+import { useProductFilter } from "../../composables/useProductFilter";
 import {
   useApi,
   type Product,
   type Category,
   type Brand,
-} from '../../composables/useApi';
+} from "../../composables/useApi";
 
 // filters composable
 const { filters, setFilter, resetFilters } = useProductFilter();
@@ -305,7 +306,7 @@ const pagination = computed(() => productsResponse.value?.pagination);
 
 // total items
 const totalItems = computed(
-  () => pagination.value?.total ?? products.value.length,
+  () => pagination.value?.total ?? products.value.length
 );
 
 // Active pill display
@@ -313,38 +314,38 @@ const activeFiltersDisplay = computed<Record<string, string>>(() => {
   const active: Record<string, string> = {};
 
   if (filters.value.search) {
-    active['Search'] = filters.value.search;
+    active["Search"] = filters.value.search;
   }
 
   const category = categories.value.find(
-    (c: Category) => c.id === filters.value.category_id,
+    (c: Category) => c.id === filters.value.category_id
   );
   if (category) {
-    active['Category'] = category.name;
+    active["Category"] = category.name;
   }
 
   const brand = brands.value.find(
-    (b: Brand) => b.id === filters.value.brand_id,
+    (b: Brand) => b.id === filters.value.brand_id
   );
   if (brand) {
-    active['Brand'] = brand.name;
+    active["Brand"] = brand.name;
   }
 
   return active;
 });
 
 const activeFilterCount = computed(
-  () => Object.keys(activeFiltersDisplay.value).length,
+  () => Object.keys(activeFiltersDisplay.value).length
 );
 
 // Reset a specific filter from pill bar
 const resetSpecificFilter = (key: string) => {
-  if (key === 'Category') {
-    setFilter('category_id', null);
-  } else if (key === 'Brand') {
-    setFilter('brand_id', null);
-  } else if (key === 'Search') {
-    setFilter('search', null);
+  if (key === "Category") {
+    setFilter("category_id", null);
+  } else if (key === "Brand") {
+    setFilter("brand_id", null);
+  } else if (key === "Search") {
+    setFilter("search", null);
   }
 };
 
@@ -353,7 +354,7 @@ watch(
   () => ({ ...filters.value }),
   () => {
     currentPage.value = 1;
-  },
+  }
 );
 
 // Pagination helpers
@@ -401,11 +402,11 @@ const goNext = () => {
 
 // SEO
 useHead({
-  title: 'E-commerce',
+  title: "E-commerce",
   meta: [
     {
-      name: 'description',
-      content: 'Browse all our Products on the Nuxt E-commerce Shop.',
+      name: "description",
+      content: "Browse all our Products on the Nuxt E-commerce Shop.",
     },
   ],
 });

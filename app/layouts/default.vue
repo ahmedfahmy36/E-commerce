@@ -86,7 +86,7 @@
 
     <!-- Navigation Bar (Sticky) -->
     <nav
-      class="sticky top-0 z-10 bg-white shadow-sm border-b border-gray-100 hidden md:block"
+      class="sticky top-0 z-10 bg-white shadow-sm border-b border-gray-100 "
     >
       <div
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6 py-3 text-sm font-medium text-gray-700 overflow-x-auto"

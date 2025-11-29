@@ -41,9 +41,7 @@
       </button>
     </div>
 
-    <!-- Text Content -->
     <div class="px-3 pb-4 pt-2">
-      <!-- Title -->
       <h3
         class="text-base font-medium text-gray-900 truncate mb-1"
         :title="product.title"
@@ -88,9 +86,7 @@ const toggleWishlist = () => {
   isWishlisted.value = !isWishlisted.value;
 };
 
-/**
- * Format price exactly like screenshot: "100$"
- */
+
 const formatPrice = (price: string | null | undefined) => {
   if (!price) return '';
   const num = parseFloat(price.replace(/,/g, ''));
@@ -100,5 +96,4 @@ const formatPrice = (price: string | null | undefined) => {
 </script>
 
 <style scoped>
-/* Smooth rounding for perfect match */
 </style>

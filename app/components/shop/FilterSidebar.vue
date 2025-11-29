@@ -1,4 +1,3 @@
-<!-- components/Shop/ShopFilterSidebar.vue -->
 <template>
   <aside
     class="hidden lg:block lg:col-span-1 bg-white p-0 rounded-2xl h-fit sticky top-[120px]"

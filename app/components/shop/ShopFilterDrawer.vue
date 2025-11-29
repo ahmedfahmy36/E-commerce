@@ -1,14 +1,10 @@
-<!-- components/Shop/ShopFilterDrawer.vue -->
 <template>
-  <!-- 👇 was md:hidden, now lg:hidden so it works on tablet too -->
   <div class="fixed inset-0 z-40 flex lg:hidden">
-    <!-- Backdrop -->
     <div
       class="fixed inset-0 bg-black/40"
       @click="emit('close')"
     ></div>
 
-    <!-- Panel -->
     <div
       class="relative ml-auto h-full w-full max-w-sm bg-white shadow-xl flex flex-col"
     >
@@ -42,7 +38,6 @@
         </button>
       </header>
 
-      <!-- Content -->
       <div class="flex-1 overflow-y-auto px-4 py-4 space-y-6">
         <!-- Category accordion -->
         <section>
@@ -124,7 +119,7 @@
                         'category_id',
                         ($event.target as HTMLInputElement).checked
                           ? cat.id
-                          : null,
+                          : null
                       )
                     "
                     class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
@@ -219,7 +214,7 @@
                         'brand_id',
                         ($event.target as HTMLInputElement).checked
                           ? brand.id
-                          : null,
+                          : null
                       )
                     "
                     class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
@@ -283,16 +278,16 @@ const brandSearch = ref('');
 const filteredCategories = computed(() => {
   if (!categorySearch.value) return props.categories;
   const searchLower = categorySearch.value.toLowerCase();
-  return props.categories.filter((cat) =>
-    cat.name.toLowerCase().includes(searchLower),
+  return props.categories.filter(cat => 
+    cat.name.toLowerCase().includes(searchLower)
   );
 });
 
 const filteredBrands = computed(() => {
   if (!brandSearch.value) return props.brands;
   const searchLower = brandSearch.value.toLowerCase();
-  return props.brands.filter((brand) =>
-    brand.name.toLowerCase().includes(searchLower),
+  return props.brands.filter(brand => 
+    brand.name.toLowerCase().includes(searchLower)
   );
 });
 

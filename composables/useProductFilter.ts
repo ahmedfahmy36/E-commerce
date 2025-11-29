@@ -1,14 +1,12 @@
-// composables/useProductFilter.ts
 import { useState } from 'nuxt/app';
 
 export interface FilterState {
-  category_id: string | null; // UUID of category
-  brand_id: string | null;    // UUID of brand
-  search: string | null;      // text search
+  category_id: string | null;
+  brand_id: string | null;   
+  search: string | null;     
 }
 
 export function useProductFilter() {
-  // Global, SSR-safe state shared across components
   const filters = useState<FilterState>('product-filters', () => ({
     category_id: null,
     brand_id: null,
